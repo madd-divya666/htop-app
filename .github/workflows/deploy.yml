@@ -1,1 +1,21 @@
 
+name: Keep Codespace Alive
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "*/15 * * * *"  # Runs every 15 minutes
+  workflow_dispatch:  # Allows manual execution
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Keep Codespace Running
+        run: |
+          while true; do echo "Keeping Codespace active..."; sleep 300; done
